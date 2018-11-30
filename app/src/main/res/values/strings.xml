@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RemAll_2</string>
+    <string name="title_activity_add_task">AddTaskActivity</string>
+</resources>
