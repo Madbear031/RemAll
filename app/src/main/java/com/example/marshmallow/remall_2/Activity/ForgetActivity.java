@@ -13,12 +13,14 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -39,6 +41,7 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
     ImageButton shopButton;
     ImageButton addButton;
     ImageButton delButton;
+    Button button;
     LinearLayout lmain;
     TextView date_bd;
     TextView time_bd;
@@ -72,6 +75,7 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
         if (c.moveToFirst()) {
 
             int nameColIndex = c.getColumnIndex("name");
+            int priorColIndex = c.getColumnIndex("prior");
             int yearColIndex = c.getColumnIndex("year");
             int monthColIndex = c.getColumnIndex("month");
             int dayColIndex = c.getColumnIndex("day");
@@ -83,6 +87,7 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
                 task_name_bd = inflatedView.findViewById(R.id.task_name_bd);
                 date_bd = inflatedView.findViewById(R.id.date_bd);
                 time_bd = inflatedView.findViewById(R.id.time_bd);
+                button = inflatedView.findViewById(R.id.prior);
                 task_name_bd.setText(c.getString(nameColIndex));
                 date_bd.setText(String.valueOf(c.getInt(dayColIndex) + "." + c.getInt(monthColIndex) + "." + c.getInt(yearColIndex)));
                 time_bd.setText(String.valueOf(c.getInt(hourColIndex) + ":" + c.getInt(minutesColIndex)));
@@ -91,6 +96,20 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
                         +"."+c.getInt(yearColIndex)+" "+c.getInt(hourColIndex)+":"+c.getInt(minutesColIndex)+"\n";
 
 
+                switch (c.getInt(priorColIndex)){
+                    case 1:{
+                        button.setBackgroundResource(R.drawable.round_green);
+                        break;
+                    }
+                    case 2:{
+                        button.setBackgroundResource(R.drawable.round_yellow);
+                        break;
+                    }
+                    case 3:{
+                        button.setBackgroundResource(R.drawable.round_red);
+                        break;
+                    }
+                }
 
                 Intent notificationIntent = new Intent(this, ForgetActivity.class);
                 PendingIntent contentIntent = PendingIntent.getActivity(this,

@@ -101,6 +101,7 @@ public class BookActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
+//
 
     protected Dialog onCreateDialog(final int id) {
         DBHelper_book dbHelper_book = new DBHelper_book(this);

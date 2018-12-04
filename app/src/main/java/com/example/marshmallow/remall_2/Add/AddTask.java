@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TimePicker;
 
 import com.example.marshmallow.remall_2.DB_Helper.DBHelper_task;
@@ -23,11 +25,14 @@ public class AddTask extends AppCompatActivity implements View.OnClickListener {
 
     Button btnAdd, date, time;
     EditText etName;
+    RadioButton radioButton1,radioButton2,radioButton3;
+    RadioGroup radioGroup;
     int myHour = 0;
     int myMinute = 0;
     int myYear = 0;
     int myMonth = 0;
     int myDay = 0;
+    int prior = 0;
 
     Calendar dateAndTime=Calendar.getInstance();
 
@@ -44,6 +49,10 @@ public class AddTask extends AppCompatActivity implements View.OnClickListener {
         date.setOnClickListener(this);
         time = findViewById(R.id.time);
         time.setOnClickListener(this);
+        radioButton1 = findViewById(R.id.radioButton1);
+        radioButton2 = findViewById(R.id.radioButton2);
+        radioButton3 = findViewById(R.id.radioButton3);
+        radioGroup = findViewById(R.id.radiogroup);
 
         etName = findViewById(R.id.etName);
 
@@ -55,9 +64,7 @@ public class AddTask extends AppCompatActivity implements View.OnClickListener {
 
         ContentValues cv = new ContentValues();
 
-
         String name = etName.getText().toString();
-
 
         switch (v.getId()) {
             case R.id.date: {
@@ -69,7 +76,40 @@ public class AddTask extends AppCompatActivity implements View.OnClickListener {
                 break;
             }
             case R.id.btnAdd: {
+              /*  RadioButton rb = (RadioButton)v;
+                switch (rb.getId()) {
+                    case R.id.radioButton1: {
+                        prior = 1;
+                        break;
+                    }
+                    case R.id.radioButton2: {
+                        prior = 2;
+                        break;
+                    }
+                    case R.id.radioButton3: {
+                        prior = 3;
+                        break;
+                    }
+                }*/
+                switch (radioGroup.getCheckedRadioButtonId()) {
+                    case R.id.radioButton1:
+                        radioButton2.setEnabled(false);
+                        radioButton3.setEnabled(false);
+                        prior = 1;
+                        break;
+                    case R.id.radioButton2:
+                        radioButton1.setEnabled(false);
+                        radioButton3.setEnabled(false);
+                        prior = 2;
+                        break;
+                    case R.id.radioButton3:
+                        radioButton2.setEnabled(false);
+                        radioButton1.setEnabled(false);
+                        prior = 3;
+                        break;
+                }
                 cv.put("name", name);
+                cv.put("prior", prior);
                 cv.put("year", myYear);
                 cv.put("month", myMonth);
                 cv.put("day", myDay);

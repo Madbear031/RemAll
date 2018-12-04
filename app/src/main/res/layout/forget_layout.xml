@@ -16,7 +16,6 @@
             android:layout_alignStart="@+id/date_bd"
             android:layout_below="@+id/date_bd"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
             android:text="TextView"
             android:textAlignment="textEnd"
             android:textStyle="bold"
@@ -31,7 +30,6 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="TextView"
             android:textAlignment="textEnd"
@@ -42,19 +40,33 @@
 
         <TextView
             android:id="@+id/task_name_bd"
-            android:layout_width="294dp"
+            android:layout_width="220dp"
             android:layout_height="37dp"
             android:layout_alignBottom="@+id/time_bd"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:layout_toStartOf="@+id/date_bd"
             android:text="TextView"
             android:textAlignment="viewStart"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/prior"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/prior"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/task_name_bd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
     </android.support.constraint.ConstraintLayout>
 
 </RelativeLayout>
